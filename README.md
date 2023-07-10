@@ -3,13 +3,22 @@
 For easier development I used xampp for the database.
 
 STEPS:
-Clone the the repository 
+
+Clone the the repository.
+
 Copy the ".env.example" file and change the name to ".env". You can keep it like it is if you are using xampp like me or change it accordingly your needs.
-You need to have installed composer to run "composer install"
+
+-The next steps need to be done on the terminal, insde the folder of the project.
+
+You need to have installed composer to run "composer install".
+
 "php artisan key:generate" 
-"php artisan migrate"
-"php artisan db:seed"
+
+"php artisan migrate" and "php artisan db:seed" to create database, tables and the test user with some entries.
+
 "php artisan serve" 
+
+If you go to the port, you can log in with "test@example.com" as email and "test1234" as password.
 
 
 <p align="center"><a href="https://laravel.com" target="_blank"><img src="https://raw.githubusercontent.com/laravel/art/master/logo-lockup/5%20SVG/2%20CMYK/1%20Full%20Color/laravel-logolockup-cmyk-red.svg" width="400" alt="Laravel Logo"></a></p>
