@@ -11,10 +11,12 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('url_shortener', function (Blueprint $table) {
+        
+        Schema::create('url_shorteners', function (Blueprint $table) {
             $table->id();
             $table->unsignedBigInteger('user_id');
             $table->foreign('user_id')->references('id')->on('users');
+            $table->string('url', 1000);
             $table->string('string', 255);
             $table->string('custom_alias', 255)->nullable();
             $table->timestamps();
@@ -23,9 +25,10 @@ return new class extends Migration
         Schema::create('url_shortener_analitics', function (Blueprint $table) {
             $table->id();
             $table->unsignedBigInteger('url_shortener_id');
-            $table->foreign('url_shortener_id')->references('id')->on('url_shortener');
+            $table->foreign('url_shortener_id')->references('id')->on('url_shorteners');
             $table->timestamps();
         });
+        
     }
 
     /**
@@ -33,7 +36,9 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::drop('url_shortener');
+        
+        Schema::drop('url_shorteners');
         Schema::drop('url_shortener_analitics');
+        
     }
 };

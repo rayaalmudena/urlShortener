@@ -19,5 +19,11 @@ class DatabaseSeeder extends Seeder
             'email' => 'test@example.com',
             'password' => 'test1234',
         ]);
+/*
+        $path = public_path('sql\urlshortener_dev.sql');
+        $sql = file_get_contents($path);
+        \DB::unprepared($sql);
+*/
+
     }
 }
