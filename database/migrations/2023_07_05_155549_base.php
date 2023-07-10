@@ -22,7 +22,7 @@ return new class extends Migration
             $table->timestamps();
         });
 
-        Schema::create('url_shortener_analitics', function (Blueprint $table) {
+        Schema::create('url_shortener_analytics', function (Blueprint $table) {
             $table->id();
             $table->unsignedBigInteger('url_shortener_id');
             $table->foreign('url_shortener_id')->references('id')->on('url_shorteners');
@@ -38,7 +38,7 @@ return new class extends Migration
     {
         
         Schema::drop('url_shorteners');
-        Schema::drop('url_shortener_analitics');
+        Schema::drop('url_shortener_analytics');
         
     }
 };

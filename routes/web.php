@@ -26,14 +26,18 @@ Route::get('/login', function () {
 Route::get('/authenticate', [UserController::class, 'authenticate'])->name('authenticate');
 Route::get('/logout', [UserController::class, 'logout'])->name('logout');
 
+Route::middleware(['auth'])->group(function () {
+    Route::controller(UrlShortenerController::class)->group(function () {
+        Route::get('/dashboard', 'dashboard')->name('dashboard');
+    
+        Route::get('/url-shortener/add', function () { return view('url.edit'); })->name('url-shortener.add');    
+        Route::post('/url-shortener/create', 'store')->name('url-shortener.store');
+        Route::get('/url-shortener/edit/{urlShortenerId}', 'edit')->name('url-shortener.edit');
+    
+        Route::get('/url-shortener/analytics/{urlShortenerId}', 'analytics')->name('url-shortener.analytics');
+    });
+});
 
-Route::controller(UrlShortenerController::class)->group(function () {
-    Route::get('/dashboard', 'dashboard')->name('dashboard');
-    Route::get('//url-shortener/add', function () { return view('url.edit'); })->name('url-shortener.add');    
-    Route::post('/url-shortener/create', 'store')->name('url-shortener.store');
-    //Route::get('/url-shortener/edit/{urlShortenerId}')->name('');
-    Route::get('/url-shortener/analytics/{urlShortenerId}', 'analitics')->name('url-shortener.analitics');
-})->middleware('auth');
 
 Route::controller(UrlShortenerController::class)->group(function () {
     Route::get('/{userId}/{string}', 'redirect')->name('redirect');
